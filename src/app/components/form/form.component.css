@@ -1,0 +1,55 @@
+#modal-content-wrapper {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    text-align: center;
+}
+input{
+    width: 300px;
+    height: 30px;
+    margin: 5px;
+}
+
+#modal-title {
+    font-size: 22px;
+}
+.banner-container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.banner-container>span{
+    color: #9ba6a8;
+}
+.logo>a{
+    text-decoration: none;
+
+}
+
+.logo>a:visited{
+    color: #00ba8a;
+
+}
+.logo>a{
+    color: #00ba8a;
+    font-size: 18px;
+
+}
+
+#modal-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#modal-action-button {
+    margin-right: 30px;
+    background-color:#09bf8e;
+}
+
+#modal-cancel-button {
+    background-color: #4e4e4e;
+    margin-right: 20px;
+}

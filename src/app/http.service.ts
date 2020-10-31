@@ -8,15 +8,20 @@ export class HttpService {
 
   constructor(private http:HttpClient) { }
   getData(){
-    return this.http.get('https://api.sheety.co/3e4c7f1e1c4feddcd7a8feccc25b264d/bankappTest/cuenta')
+    return this.http.get('http://bankapp.endcom.mx/api/bankappTest/cuenta')
   }
 
   getSecondData(){
-    return this.http.get(' https://api.sheety.co/3e4c7f1e1c4feddcd7a8feccc25b264d/bankappTest/saldos')
+    return this.http.get('http://bankapp.endcom.mx/api/bankappTest/saldos')
 
   }
   getTarjetasData(){
-    return this.http.get(' https://api.sheety.co/3e4c7f1e1c4feddcd7a8feccc25b264d/bankappTest/tarjetas')
+    return this.http.get('http://bankapp.endcom.mx/api/bankappTest/tarjetas')
+
+  }
+
+  getMovData(){
+    return this.http.get('http://bankapp.endcom.mx/api/bankappTest/movimientos')
 
   }
 }

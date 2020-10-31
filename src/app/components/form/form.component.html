@@ -1,0 +1,21 @@
+<div id="modal-content-wrapper">
+    <div class="banner-container">
+        <div class="logo"><a>Bankapp</a></div>
+        <span>Agregar tarjeta</span>
+    </div>
+    <form [formGroup]="form" (ngSubmit)="save()">
+        <input placeholder="Numero de tarjeta" formControlName="cardNumberField" matInput type="number">
+        <input type="number" formControlName="accountField">
+        <input type="text" formControlName="issuerField">
+        <input type="text" formControlName="cardNameField">
+        <input type="text" formControlName="brandField">
+        <input type="text" formControlName="statusField">
+        <input type="number" formControlName="balanceField">
+        <input type="text" formControlName="accTypeField">
+    </form>
+    <footer id="modal-footer">
+        <button mat-raised-button id="modal-cancel-button" (click) ="closeModal()">Cancelar</button>
+        <button mat-raised-button id="modal-action-button">Agregar tarjeta</button>
+        
+    </footer>
+</div>

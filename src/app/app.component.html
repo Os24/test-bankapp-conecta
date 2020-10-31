@@ -6,8 +6,8 @@
   </div>
     <nav>
       <ul>
-        <li><a href="#" routerLink="/">Mis cuentas</a></li>
-        <li><a href="#" routerLink="/">Enviar Dinero</a></li>
+        <li class="active"><a href="#" routerLink="/"><span>Mis cuentas</span></a></li>
+        <li class="non-active"><a href="#" routerLink="/form"><span>Enviar Dinero</span></a></li>
       </ul>
     </nav>
     <div class="user-info">
@@ -15,11 +15,12 @@
       <p id="sesion" *ngIf='accounts'> Ultimo inicio {{accounts.cuenta[0].ultimaSesion.slice(0,-9)}} </p>
     </div>
   </div>
+</header>
   <div class="saldos-container">
     <div class="card">
       <p>SALDO GENERAL<br>EN CUENTAS</p>
       <p *ngIf='saldos'>{{saldos.saldos[0].saldoGeneral | currency}} </p>
-    </div>
+    </div> 
     <div class="card">
       <p>TOTAL DE<br>INGRESOS</p>
       <p *ngIf='saldos'>{{saldos.saldos[0].ingresos | currency}} </p>
@@ -30,22 +31,23 @@
     </div>
   </div>
   <div class="third-container">
+    
     <div class="tarjetas-container">
       <div class="tarjeta">
         <div class="status">
-          <span>Activa</span>
+          <span *ngIf="creditCard">{{creditCard.tarjetas[0].estado}}</span>
         </div>
         <div class="num-tarjeta">
-          <span>5439 - 2403 - 1234 - 1234</span>
+          <span *ngIf='creditCard'>{{creditCard.tarjetas[0].tarjeta}}</span>
         </div>
         <div class="nom-titular">
-          <span>John Doe</span>
+          <span *ngIf="creditCard">{{creditCard.tarjetas[0].nombre}}</span>
         </div>
         <div class="titulo">
-          <span>Titular</span>
+          <span *ngIf="creditCard">{{creditCard.tarjetas[0].tipo}}</span>
         </div>
         <div class="saldo-tarjeta">
-          $1,200.00
+          <span *ngIf="creditCard">{{creditCard.tarjetas[0].saldo | currency}}</span>
         </div>
         <div class="tarjeta-logo">
           <picture>
@@ -53,21 +55,21 @@
           </picture>
         </div>
       </div>
-         <div class="tarjeta">
+         <div class="tarjeta" *ngIf="creditCard" [class.filter]="creditCard.tarjetas[1].estado==='desactivada'">
         <div class="status">
-          <span>Activa</span>
+          <span *ngIf="creditCard">{{ creditCard.tarjetas[1].estado }}</span>
         </div>
         <div class="num-tarjeta">
-          <span>5439 - 2403 - 1234 - 1234</span>
+          <span *ngIf='creditCard'>{{creditCard.tarjetas[1].tarjeta}}</span>
         </div>
         <div class="nom-titular">
-          <span>John Doe</span>
+          <span *ngIf='creditCard'>{{creditCard.tarjetas[0].nombre}}</span>
         </div>
         <div class="titulo">
-          <span>Titular</span>
+          <span *ngIf='creditCard'>{{creditCard.tarjetas[0].tipo}}</span>
         </div>
         <div class="saldo-tarjeta">
-          $1,200.00
+          <span *ngIf='creditCard'>{{creditCard.tarjetas[0].saldo | currency}}</span>
         </div>
         <div class="tarjeta-logo">
           <picture>
@@ -75,54 +77,32 @@
           </picture>
         </div>
       </div>
+      <button  (click)="openModal()" >
+        <span>Agregar tarjeta</span>
+        <picture>
+          <img src="../assets/add.svg" alt="add-btn">
+        </picture>
+      </button>
     </div>
+    <div class="mov-wrapper">
+    <h2>Movimientos</h2>
     <div class="movimientos-container">
-      <h2>Movimientos</h2>
-
-<table>
+    <table>
   <tr>
-    <th>Company</th>
-    <th>Contact</th>
-    <th>Country</th>
+    <th>Fecha</th>
+    <th>Descripción</th>
+    <th>Monto</th>
   </tr>
-  <tr>
-    <td>Alfreds Futterkiste</td>
-    <td>Maria Anders</td>
-    <td>Germany</td>
+  <ng-container *ngIf="movements">
+  <tr *ngFor="let move of movements.movimientos">
+    <td >{{move.fecha}}</td>
+    <td>{{move.descripcion}}</td>
+    <td>{{move.monto}}</td>
+    <td class="blue" [class.red]="move.tipo === 'cargo'">{{move.monto | currency}}</td>
   </tr>
-  <tr>
-    <td>Centro comercial Moctezuma</td>
-    <td>Francisco Chang</td>
-    <td>Mexico</td>
-  </tr>
-  <tr>
-    <td>Ernst Handel</td>
-    <td>Roland Mendel</td>
-    <td>Austria</td>
-  </tr>
-  <tr>
-    <td>Island Trading</td>
-    <td>Helen Bennett</td>
-    <td>UK</td>
-  </tr>
-  <tr>
-    <td>Laughing Bacchus Winecellars</td>
-    <td>Yoshi Tannamuri</td>
-    <td>Canada</td>
-  </tr>
-  <tr>
-    <td>Magazzini Alimentari Riuniti</td>
-    <td>Giovanni Rovelli</td>
-    <td>Italy</td>
-  </tr>
+</ng-container>
 </table>
-
-    </div>
+</div>
   </div>
-
-
-</header>
-
-
-
-<router-outlet></router-outlet>
+  </div>
+ <router-outlet></router-outlet>
